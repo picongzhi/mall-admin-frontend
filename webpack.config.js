@@ -13,12 +13,21 @@ module.exports = {
   resolve: {
     alias: {
       page: path.resolve(__dirname, 'src/page'),
-      component: path.resolve(__dirname, 'src/component')
+      component: path.resolve(__dirname, 'src/component'),
+      util: path.resolve(__dirname, 'src/util'),
+      service: path.resolve(__dirname, 'src/service')
     }
   },
   devServer: {
-    contentBase: './dist',
-    port: 8000
+    contentBase: path.join(__dirname, 'dist'),
+    historyApiFallback: true,
+    port: 8000,
+    proxy: {
+      '/api/**': {
+        target: 'http://localhost:8080',
+        changeOrigin: true
+      }
+    }
   },
   module: {
     rules: [
