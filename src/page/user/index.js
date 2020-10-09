@@ -16,7 +16,7 @@ class UserList extends Component {
     super(props);
     this.state = {
       page: 1,
-      size: 10,
+      size: 5,
       total: 0,
       data: []
     }
@@ -35,11 +35,10 @@ class UserList extends Component {
       })
   }
 
-  onPageChange(page, size) {
-    console.log(page, size)
+  onPageChange(current) {
+    console.log(current)
     this.setState({
-      page: page,
-      size: size
+      page: current
     }, () => {
       this.loadUserList()
     })
@@ -81,8 +80,8 @@ class UserList extends Component {
           current={this.state.page}
           total={this.state.total}
           pageSize={this.state.size}
-          onChange={(page, size) => {
-            this.onPageChange(page, size)
+          onChange={(current) => {
+            this.onPageChange(current)
           }}/>
       </div>
     )
